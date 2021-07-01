@@ -1,5 +1,6 @@
 from utils import NSGA2Utils
 from population import Population
+from copy import copy
 
 class Evolution:
 
@@ -17,6 +18,8 @@ class Evolution:
             self.utils.calculate_crowding_distance(front)
         children = self.utils.create_children(self.population)
         returned_population = None
+        #
+        generations = []
         for i in range(self.num_of_generations):
             print("GENERATION N: ", i)
             self.population.extend(children)
@@ -45,4 +48,7 @@ class Evolution:
             for front in self.population.fronts:
                 self.utils.calculate_crowding_distance(front)
             children = self.utils.create_children(self.population)
-        return returned_population.fronts[0]
+            #
+            generations.append(copy(returned_population))
+        #return returned_population.fronts[0]  #last population fronts[0]
+        return generations 

@@ -5,6 +5,7 @@ import math
 from classifier import binaryClassifier
 import numpy as np
 from pyitlib import discrete_random_variable as drv
+import pickle
 
 
 
@@ -89,12 +90,31 @@ def totFF(chromosome):
     
 
 problem = Problem(objectives=[f1, f2], num_of_variables=num_genes, num_obs=length_gene, variables_range=[(17,90),(1,16),(0,1),(0,4),(0,1),(0,99999),(0,4356),(1,99)], meaningful_features=bestFeatures, allFeatures=allFeatures, totFF=totFF, same_range=False, expand=False)
-evo = Evolution(problem, num_of_generations=100, num_of_individuals=pop_size, mutation_param=20)
-func = [i.objectives for i in evo.evolve()] #N of fronts[0] after all the generations
+evo = Evolution(problem, num_of_generations=10, num_of_individuals=pop_size, mutation_param=20)
+#func = [i.objectives for i in evo.evolve()] #N of fronts[0] after all the generations
 
-function1 = [i[0] for i in func]
-function2 = [i[1] for i in func]
-plt.xlabel('Function 1', fontsize=15)
-plt.ylabel('Function 2', fontsize=15)
-plt.scatter(function1, function2)
-plt.show()
+generations = evo.evolve()
+func = [i.objectives for i in generations[-1].fronts[0]] #N of fronts[0] after all the generations
+
+#
+# for pop in generations:
+#     func = [i.objectives for i in pop.fronts[0]] 
+#     function1 = [i[0] for i in func]
+#     function2 = [i[1] for i in func]
+#     plt.xlabel('Function 1', fontsize=15)
+#     plt.ylabel('Function 2', fontsize=15)
+#     plt.scatter(function1, function2)
+#     plt.show()
+
+
+#func = [i.objectives for i in evo.evolve()] #N of fronts[0] after all the generations
+
+# function1 = [i[0] for i in func]
+# function2 = [i[1] for i in func]
+# plt.xlabel('Function 1', fontsize=15)
+# plt.ylabel('Function 2', fontsize=15)
+# plt.scatter(function1, function2)
+# plt.show()
+
+with open('generations.pickle', 'wb') as f:
+    pickle.dump(generations, f)
