@@ -20,6 +20,7 @@ class Problem:
         individual.features = [random.uniform(*x) for x in self.variables_range]
         return individual
 
+    #calculate fitness value for each individual (matrix)
     def calculate_objectives(self, individual):
         if self.expand:
             individual.objectives = [f(*individual.features) for f in self.objectives]
