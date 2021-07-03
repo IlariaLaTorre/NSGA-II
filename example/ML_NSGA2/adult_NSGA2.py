@@ -6,7 +6,10 @@ from classifier import binaryClassifier
 import numpy as np
 from pyitlib import discrete_random_variable as drv
 import pickle
+import sys
 
+
+sys.stdout = open('example/ML_NSGA2/output2', 'w')
 
 
 c = binaryClassifier()
@@ -90,7 +93,7 @@ def totFF(chromosome):
     
 
 problem = Problem(objectives=[f1, f2], num_of_variables=num_genes, num_obs=length_gene, variables_range=[(17,90),(1,16),(0,1),(0,4),(0,1),(0,99999),(0,4356),(1,99)], meaningful_features=bestFeatures, allFeatures=allFeatures, totFF=totFF, same_range=False, expand=False)
-evo = Evolution(problem, num_of_generations=10, num_of_individuals=pop_size, mutation_param=20)
+evo = Evolution(problem, num_of_generations=5, num_of_individuals=pop_size, mutation_param=20)
 #func = [i.objectives for i in evo.evolve()] #N of fronts[0] after all the generations
 
 generations = evo.evolve()
@@ -116,5 +119,19 @@ func = [i.objectives for i in generations[-1].fronts[0]] #N of fronts[0] after a
 # plt.scatter(function1, function2)
 # plt.show()
 
+
+
 with open('generations.pickle', 'wb') as f:
     pickle.dump(generations, f)
+
+g = 0
+for pop in generations:
+    print("\n")
+    print("GENERATION: ", g)
+    for i in range(len(pop.fronts)):
+        pf = [i.objectives for i in pop.fronts[i]] 
+        print("Pareto Front ", i)
+        print(pf)
+    g = g+1
+
+sys.stdout.close()

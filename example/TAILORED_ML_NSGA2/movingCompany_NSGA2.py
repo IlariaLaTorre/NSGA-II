@@ -15,6 +15,8 @@ Created on Tue Feb 23 11:29:47 2021
 """
 
 
+
+
 import random
 from random import (
     seed,
@@ -39,8 +41,19 @@ from pyitlib import discrete_random_variable as drv
 import shap
 
 
+from population import Population
+import utils
+from problem import Problem
+from utils import NSGA2Utils
+from evolution import Evolution
+import sys
 
-n_Ind = 200
+
+
+sys.stdout = open('example/TAILORED_ML_NSGA2/movingCompany_NSGA2', 'w')
+
+
+n_Ind = 2000
 var = ["age","gender","marital_status","education","lift_heavy_weight"]
 var_2 = ["age","Gender:Female","Gender:Male", "marital_status","education","lift_heavy_weight"]
 var_values = [[18,50],['F','M'],['single', 'married'],['primary', 'secondary', 'further', 'higher'],[5,50]]
@@ -73,51 +86,7 @@ y = []
 
 
 
-
-
-def decide(applicant):
-    gender = 1
-    education = 3
-    if applicant[education] == 'primary':
-        return True
-        if applicant[gender] == 'F':
-            r = randrange(0, 1)
-            if r > 0:
-                return True
-            else:
-                return False
-        else:
-            return True
-    else:
-        return False
-
-#classification logic
-def decide2(applicant):
-    gender = 1
-    heavy_weight = 4
-    if  applicant[heavy_weight] >= 20:
-        return True
-        if applicant[1] == 'F':
-            r = random.randrange(0, 1)
-            if r > 0:
-                return True
-            else:
-                return False
-        else:
-            return True
-    else:
-        return False
-
-
-def decide3(applicant):
-    new_record = [applicant]
-    #print("APPLICANT")
-    #print(new_record[0])
-    #print("CLASSIFIER PREDICTION BEFORE INTERVENTION")
-    #print(logistic_regression.predict(new_record)[0])
-    return (logistic_regression.predict(new_record)[0])
-
-#random.seed(3)
+featuresRange = [(18,50),(0,1),(0,1),(0,3),(10,50)]
 
 #Feature vectors generation
 for n in range (n_Ind):
@@ -125,13 +94,15 @@ for n in range (n_Ind):
     gender = (genders[random.randint(0,1)])
     marital_status = (marital_statuses[random.randint(0,1)])
     education = (educations[random.randint(0,3)])
+    lift_heavy_weight = (random.randint(10,50))
+
     
-    if gender == 'F':
-        #lift_heavy_weight.append(random.randint(5,15))
-        lift_heavy_weight = (np.random.choice([random.randint(5,15),random.randint(20,50)],p=[0.8,0.2]))
-    else:
-        #lift_heavy_weight.append(random.randint(20,50))
-        lift_heavy_weight = (np.random.choice([random.randint(5,15),random.randint(20,50)],p=[0.2,0.8]))
+    # if gender == 'F':
+    #     #lift_heavy_weight.append(random.randint(5,15))
+    #     lift_heavy_weight = (np.random.choice([random.randint(5,15),random.randint(20,50)],p=[0.8,0.2]))
+    # else:
+    #     #lift_heavy_weight.append(random.randint(20,50))
+    #     lift_heavy_weight = (np.random.choice([random.randint(5,15),random.randint(20,50)],p=[0.2,0.8]))
 
     applicants[n].append(age)
     applicants[n].append(gender)
@@ -152,7 +123,7 @@ for n in range (n_Ind):
 gender = 1
 heavy_weight = 4
 for n in range (n_Ind):
-    if  features[heavy_weight][n] >= 20:
+    if  features[heavy_weight][n] >= 30:
         if features[gender][n] == 'F':
             r = random.randrange(0, 1)
             if r > 0:
@@ -223,67 +194,136 @@ predictions = logistic_regression.predict(X_validation)
 #print("Accuracy: %s%%" % (100*accuracy_score(Y_validation, predictions)))
 print(confusion_matrix(Y_validation, predictions))
 print(classification_report(Y_validation, predictions))
+#['Age','Gender','Marital_Status','Education','Lift_Heavy_Weight']
+print(logistic_regression.predict([[25,1,0,2,40]])[0])
+
+#FITNESS FUNCTIONS
+
+
+bestFeatures_MI = []
+length_gene = 20000
+num_genes = len(applicants[0])
+pop_size = 100
+
+
+
+c = logistic_regression
+
+def f(chromosome):
+
+    y=[]
+    #predict
+    #len(chromosome) = 30 (observations)
+    for i in range(length_gene):
+        y.append(c.predict([chromosome[i]])[0])
+        
+    #compute mutual array using y
+    M=[]
+    Var = []
+    ch = np.array(chromosome)
+        
+    for i in range(num_genes):
+        M.append(drv.information_mutual(ch[:,i],np.array(y),cartesian_product=True))
+        Var.append(dataSet.columns[i])
+
+    #dictionary Variables-MI
+  
+    
+    d = {"".join(Var[0]):M[0]}
+    #print(d)
+
+    for i in range(len(Var)):
+        d["".join(Var[i])] = M[i]
+    #print(d)
+
+    sort_orders = sorted(d.items(), key=lambda x: x[1], reverse=True)
+    #print(sort_orders)
+
+    best = []
+
+    den = 0
+    num = 0
+    res = 0
+    summary = 0
+    summary = sum(M)
+    threshold = summary * 0.8
+    
+    M.sort(reverse=True)
+    #print(M)
+
+    #den = 0
+    while num < threshold:
+        num=num+M[den]
+        den=den+1
+
+    for i in range(den):
+        best.append(sort_orders[i])
+    bestFeatures_MI = [best]
+
+    if (den == 0):
+        den = len(Var)
+
+    return [-num,den,bestFeatures_MI,sort_orders,summary]
+        
+
+def f1(chromosome):
+    return f(chromosome)[0]
+
+def f2(chromosome):
+    return f(chromosome)[1]
+
+def bestFeatures(chromosome):
+    return f(chromosome)[2]
+
+def allFeatures(chromosome):
+    return f(chromosome)[3]
+
+def totFF(chromosome):
+    return f(chromosome)[4]
+
+
+
+problem = Problem(objectives=[f1, f2], num_of_variables=num_genes, num_obs=length_gene, variables_range=featuresRange, meaningful_features=bestFeatures, allFeatures=allFeatures, totFF=totFF, same_range=False, expand=False)
+evo = Evolution(problem, num_of_generations=50, num_of_individuals=pop_size, mutation_param=20)
 
 #Create Initial Population
-print("INITIAL POPULATION")
-for i in range(self.nInd):
-    individual = self.generate_individual(i)
-    self.problem.calculate_objectives(individual)
-    population.append(individual)
+initialPopulation = evo.createInitialPopulation()
+
+#Population Evolution
+generations = evo.evolve()
+func = [i.objectives for i in generations[-1].fronts[0]] #N of fronts[0] after all the generations
 
 
-#Test Data Generation
-for n in range (n_Ind):
-    age_test = (random.randint(18,50))
-    gender_test = (random.randint(0,1))
-    marital_status_test = (random.randint(0,1))
-    education_test = (random.randint(0,3))
-    
-    if gender_test == 'F':
-        #lift_heavy_weight.append(random.randint(5,15))
-        lift_heavy_weight_test = (np.random.choice([random.randint(5,15),random.randint(20,50)],p=[0.8,0.2]))
-    else:
-        #lift_heavy_weight.append(random.randint(20,50))
-        lift_heavy_weight_test = (np.random.choice([random.randint(5,15),random.randint(20,50)],p=[0.2,0.8]))
+sys.stdout.close()
 
-    applicants_test[n].append(age_test)
-    applicants_test[n].append(gender_test)
-    applicants_test[n].append(marital_status_test) 
-    applicants_test[n].append(education_test)
-    applicants_test[n].append(lift_heavy_weight_test)
+#SHAPLEY VALUES
+#shap_values.shape[1]
 
-    y.append(logistic_regression.predict(applicants_test[n])[0])
+expl = shap.LinearExplainer(logistic_regression,X_train)
+shap_values = expl.shap_values(X_validation)
 
-        
-        
-print("\nLift Heavy Weight")
-print(drv.information_mutual(lift_heavy_weight_vector, hiring_vector, cartesian_product=True))
-print("Gender")
-print(drv.information_mutual(gender_vector, hiring_vector, cartesian_product=True))
-print("Marital Status")
-print(drv.information_mutual(marital_status_vector, hiring_vector, cartesian_product=True))
-print("Age")
-print(drv.information_mutual(age_vector, hiring_vector, cartesian_product=True))
-print("Education")
-print(drv.information_mutual(education_vector, hiring_vector, cartesian_product=True))
+#BAR PLOT
+shap.summary_plot(shap_values, X_validation, var, plot_type="bar")
+#shap.plots.bar(shap_values[0],show=True)
+#print(shap_values.base_values)
 
-#MI on Test Set and Classifier decision
-HD = []
-
-for i in range(len(X_validation)):
-    HD.append(logistic_regression.predict(X_validation)[i])
+#SUMMARY PLOT
+shap.summary_plot(shap_values,
+                  X_validation,
+                  feature_names=var)
 
 
-print("\nLift Heavy Weight")
-print(drv.information_mutual(HD, X_validation[:,0], cartesian_product=True))
-print("Gender")
-print(drv.information_mutual(HD, X_validation[:,1], cartesian_product=True))
-print("Marital Status")
-print(drv.information_mutual(HD, X_validation[:,2], cartesian_product=True))
-print("Age")
-print(drv.information_mutual(HD, X_validation[:,3], cartesian_product=True))
-print("Education")
-print(drv.information_mutual(HD, X_validation[:,4], cartesian_product=True))
 
-print(drv.information_mutual_conditional(HD, X_validation[:,1], X_validation[:,0]))
-print(drv.information_mutual_conditional(HD, X_validation[:,0], X_validation[:,1]))
+# print("\nLift Heavy Weight")
+# print(drv.information_mutual(HD, X_validation[:,0], cartesian_product=True))
+# print("Gender")
+# print(drv.information_mutual(HD, X_validation[:,1], cartesian_product=True))
+# print("Marital Status")
+# print(drv.information_mutual(HD, X_validation[:,2], cartesian_product=True))
+# print("Age")
+# print(drv.information_mutual(HD, X_validation[:,3], cartesian_product=True))
+# print("Education")
+# print(drv.information_mutual(HD, X_validation[:,4], cartesian_product=True))
+
+# print(drv.information_mutual_conditional(HD, X_validation[:,1], X_validation[:,0]))
+# print(drv.information_mutual_conditional(HD, X_validation[:,0], X_validation[:,1]))
