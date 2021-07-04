@@ -50,7 +50,9 @@ import sys
 
 
 
-sys.stdout = open('example/TAILORED_ML_NSGA2/movingCompany_NSGA2', 'w')
+from datetime import datetime
+now = datetime.now().strftime("%Y%m%d_%H%M%S")
+sys.stdout = open('example/TAILORED_ML_NSGA2/data/output/movingCompany_NSGA2_TAIL_'+now, 'w')
 
 
 n_Ind = 2000

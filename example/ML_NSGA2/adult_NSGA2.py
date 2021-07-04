@@ -9,7 +9,9 @@ import pickle
 import sys
 
 
-sys.stdout = open('example/ML_NSGA2/output2', 'w')
+from datetime import datetime
+now = datetime.now().strftime("%Y%m%d_%H%M%S")
+sys.stdout = open('example/ML_NSGA2/data/output/output_'+now, 'w')
 
 
 c = binaryClassifier()

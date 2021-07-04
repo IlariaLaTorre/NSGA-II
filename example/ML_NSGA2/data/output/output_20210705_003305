@@ -1,0 +1,772 @@
+   age         workclass  fnlwgt  education  education.num  ...  capital.gain capital.loss hours.per.week  native.country  income
+0   39         State-gov   77516  Bachelors             13  ...          2174            0             40   United-States       0
+1   50  Self-emp-not-inc   83311  Bachelors             13  ...             0            0             13   United-States       0
+2   38           Private  215646    HS-grad              9  ...             0            0             40   United-States       0
+3   53           Private  234721       11th              7  ...             0            0             40   United-States       0
+4   28           Private  338409  Bachelors             13  ...             0            0             40            Cuba       0
+
+[5 rows x 15 columns]
+Dataset with Dropped Labels
+   age  education.num  marital.status  race  sex  capital.gain  capital.loss  hours.per.week  income
+0   39             13               0     0    0          2174             0              40       0
+1   50             13               1     0    0             0             0              13       0
+2   38              9               0     0    0             0             0              40       0
+3   53              7               1     4    0             0             0              40       0
+4   28             13               1     4    1             0             0              40       0
+Split Data: X
+[[   39    13     0 ...  2174     0    40]
+ [   50    13     1 ...     0     0    13]
+ [   38     9     0 ...     0     0    40]
+ ...
+ [   58     9     0 ...     0     0    40]
+ [   22     9     0 ...     0     0    20]
+ [   52     9     1 ... 15024     0    40]]
+Split Data: Y
+[0 0 0 ... 0 0 1]
+LR: 0.797912 (0.008327)
+INITIAL POPULATION
+
+
+Individual  0
+Fitness values :
+[0, 8]
+[[]]
+0.0
+[('age', 0.0), ('education.num', 0.0), ('marital.status', 0.0), ('race', 0.0), ('sex', 0.0), ('capital.gain', 0.0), ('capital.loss', 0.0), ('hours.per.week', 0.0)]
+
+
+Individual  1
+Fitness values :
+[0, 8]
+[[]]
+0.0
+[('age', 0.0), ('education.num', 0.0), ('marital.status', 0.0), ('race', 0.0), ('sex', 0.0), ('capital.gain', 0.0), ('capital.loss', 0.0), ('hours.per.week', 0.0)]
+
+
+Individual  2
+Fitness values :
+[0, 8]
+[[]]
+0.0
+[('age', 0.0), ('education.num', 0.0), ('marital.status', 0.0), ('race', 0.0), ('sex', 0.0), ('capital.gain', 0.0), ('capital.loss', 0.0), ('hours.per.week', 0.0)]
+
+
+Individual  3
+Fitness values :
+[0, 8]
+[[]]
+0.0
+[('age', 0.0), ('education.num', 0.0), ('marital.status', 0.0), ('race', 0.0), ('sex', 0.0), ('capital.gain', 0.0), ('capital.loss', 0.0), ('hours.per.week', 0.0)]
+
+
+Individual  4
+Fitness values :
+[0, 8]
+[[]]
+0.0
+[('age', 0.0), ('education.num', 0.0), ('marital.status', 0.0), ('race', 0.0), ('sex', 0.0), ('capital.gain', 0.0), ('capital.loss', 0.0), ('hours.per.week', 0.0)]
+
+
+Individual  5
+Fitness values :
+[0, 8]
+[[]]
+0.0
+[('age', 0.0), ('education.num', 0.0), ('marital.status', 0.0), ('race', 0.0), ('sex', 0.0), ('capital.gain', 0.0), ('capital.loss', 0.0), ('hours.per.week', 0.0)]
+
+
+Individual  6
+Fitness values :
+[0, 8]
+[[]]
+0.0
+[('age', 0.0), ('education.num', 0.0), ('marital.status', 0.0), ('race', 0.0), ('sex', 0.0), ('capital.gain', 0.0), ('capital.loss', 0.0), ('hours.per.week', 0.0)]
+
+
+Individual  7
+Fitness values :
+[0, 8]
+[[]]
+0.0
+[('age', 0.0), ('education.num', 0.0), ('marital.status', 0.0), ('race', 0.0), ('sex', 0.0), ('capital.gain', 0.0), ('capital.loss', 0.0), ('hours.per.week', 0.0)]
+
+
+Individual  8
+Fitness values :
+[-2.3449779679464067, 5]
+[[('age', 0.46899559358928133), ('education.num', 0.46899559358928133), ('capital.gain', 0.46899559358928133), ('capital.loss', 0.46899559358928133), ('hours.per.week', 0.46899559358928133)]]
+2.8664894514869164
+[('age', 0.46899559358928133), ('education.num', 0.46899559358928133), ('capital.gain', 0.46899559358928133), ('capital.loss', 0.46899559358928133), ('hours.per.week', 0.46899559358928133), ('race', 0.2689955935892816), ('sex', 0.1444843438056279), ('marital.status', 0.10803154614560018)]
+
+
+Individual  9
+Fitness values :
+[0, 8]
+[[]]
+0.0
+[('age', 0.0), ('education.num', 0.0), ('marital.status', 0.0), ('race', 0.0), ('sex', 0.0), ('capital.gain', 0.0), ('capital.loss', 0.0), ('hours.per.week', 0.0)]
+GENERATION N:  0
+
+
+Individual  0
+Fitness values :
+[0, 8]
+[[]]
+
+
+Individual  1
+Fitness values :
+[0, 8]
+[[]]
+
+
+Individual  2
+Fitness values :
+[0, 8]
+[[]]
+
+
+Individual  3
+Fitness values :
+[0, 8]
+[[]]
+
+
+Individual  4
+Fitness values :
+[0, 8]
+[[]]
+
+
+Individual  5
+Fitness values :
+[0, 8]
+[[]]
+
+
+Individual  6
+Fitness values :
+[0, 8]
+[[]]
+
+
+Individual  7
+Fitness values :
+[0, 8]
+[[]]
+
+
+Individual  8
+Fitness values :
+[-2.3449779679464067, 5]
+[[('age', 0.46899559358928133), ('education.num', 0.46899559358928133), ('capital.gain', 0.46899559358928133), ('capital.loss', 0.46899559358928133), ('hours.per.week', 0.46899559358928133)]]
+
+
+Individual  9
+Fitness values :
+[0, 8]
+[[]]
+
+
+Individual  10
+Fitness values :
+[0, 8]
+[[]]
+
+
+Individual  11
+Fitness values :
+[0, 8]
+[[]]
+
+
+Individual  12
+Fitness values :
+[0, 8]
+[[]]
+
+
+Individual  13
+Fitness values :
+[0, 8]
+[[]]
+
+
+Individual  14
+Fitness values :
+[0, 8]
+[[]]
+
+
+Individual  15
+Fitness values :
+[0, 8]
+[[]]
+
+
+Individual  16
+Fitness values :
+[0, 8]
+[[]]
+
+
+Individual  17
+Fitness values :
+[0, 8]
+[[]]
+
+
+Individual  18
+Fitness values :
+[0, 8]
+[[]]
+
+
+Individual  19
+Fitness values :
+[0, 8]
+[[]]
+BEST INDIVIDUAL: 
+[-2.3449779679464067, 5]
+[[('age', 0.46899559358928133), ('education.num', 0.46899559358928133), ('capital.gain', 0.46899559358928133), ('capital.loss', 0.46899559358928133), ('hours.per.week', 0.46899559358928133)]]
+GENERATION N:  1
+
+
+Individual  0
+Fitness values :
+[-2.3449779679464067, 5]
+[[('age', 0.46899559358928133), ('education.num', 0.46899559358928133), ('capital.gain', 0.46899559358928133), ('capital.loss', 0.46899559358928133), ('hours.per.week', 0.46899559358928133)]]
+
+
+Individual  1
+Fitness values :
+[0, 8]
+[[]]
+
+
+Individual  2
+Fitness values :
+[0, 8]
+[[]]
+
+
+Individual  3
+Fitness values :
+[0, 8]
+[[]]
+
+
+Individual  4
+Fitness values :
+[0, 8]
+[[]]
+
+
+Individual  5
+Fitness values :
+[0, 8]
+[[]]
+
+
+Individual  6
+Fitness values :
+[0, 8]
+[[]]
+
+
+Individual  7
+Fitness values :
+[0, 8]
+[[]]
+
+
+Individual  8
+Fitness values :
+[0, 8]
+[[]]
+
+
+Individual  9
+Fitness values :
+[0, 8]
+[[]]
+
+
+Individual  10
+Fitness values :
+[0, 8]
+[[]]
+
+
+Individual  11
+Fitness values :
+[0, 8]
+[[]]
+
+
+Individual  12
+Fitness values :
+[0, 8]
+[[]]
+
+
+Individual  13
+Fitness values :
+[0, 8]
+[[]]
+
+
+Individual  14
+Fitness values :
+[0, 8]
+[[]]
+
+
+Individual  15
+Fitness values :
+[0, 8]
+[[]]
+
+
+Individual  16
+Fitness values :
+[0, 8]
+[[]]
+
+
+Individual  17
+Fitness values :
+[0, 8]
+[[]]
+
+
+Individual  18
+Fitness values :
+[0, 8]
+[[]]
+
+
+Individual  19
+Fitness values :
+[0, 8]
+[[]]
+BEST INDIVIDUAL: 
+[-2.3449779679464067, 5]
+[[('age', 0.46899559358928133), ('education.num', 0.46899559358928133), ('capital.gain', 0.46899559358928133), ('capital.loss', 0.46899559358928133), ('hours.per.week', 0.46899559358928133)]]
+GENERATION N:  2
+
+
+Individual  0
+Fitness values :
+[-2.3449779679464067, 5]
+[[('age', 0.46899559358928133), ('education.num', 0.46899559358928133), ('capital.gain', 0.46899559358928133), ('capital.loss', 0.46899559358928133), ('hours.per.week', 0.46899559358928133)]]
+
+
+Individual  1
+Fitness values :
+[0, 8]
+[[]]
+
+
+Individual  2
+Fitness values :
+[0, 8]
+[[]]
+
+
+Individual  3
+Fitness values :
+[0, 8]
+[[]]
+
+
+Individual  4
+Fitness values :
+[0, 8]
+[[]]
+
+
+Individual  5
+Fitness values :
+[0, 8]
+[[]]
+
+
+Individual  6
+Fitness values :
+[0, 8]
+[[]]
+
+
+Individual  7
+Fitness values :
+[0, 8]
+[[]]
+
+
+Individual  8
+Fitness values :
+[0, 8]
+[[]]
+
+
+Individual  9
+Fitness values :
+[0, 8]
+[[]]
+
+
+Individual  10
+Fitness values :
+[0, 8]
+[[]]
+
+
+Individual  11
+Fitness values :
+[-2.3449779679464067, 5]
+[[('age', 0.46899559358928133), ('education.num', 0.46899559358928133), ('capital.gain', 0.46899559358928133), ('capital.loss', 0.46899559358928133), ('hours.per.week', 0.46899559358928133)]]
+
+
+Individual  12
+Fitness values :
+[0, 8]
+[[]]
+
+
+Individual  13
+Fitness values :
+[0, 8]
+[[]]
+
+
+Individual  14
+Fitness values :
+[0, 8]
+[[]]
+
+
+Individual  15
+Fitness values :
+[0, 8]
+[[]]
+
+
+Individual  16
+Fitness values :
+[0, 8]
+[[]]
+
+
+Individual  17
+Fitness values :
+[0, 8]
+[[]]
+
+
+Individual  18
+Fitness values :
+[-2.3449779679464067, 5]
+[[('age', 0.46899559358928133), ('education.num', 0.46899559358928133), ('capital.gain', 0.46899559358928133), ('capital.loss', 0.46899559358928133), ('hours.per.week', 0.46899559358928133)]]
+
+
+Individual  19
+Fitness values :
+[0, 8]
+[[]]
+BEST INDIVIDUAL: 
+[-2.3449779679464067, 5]
+[[('age', 0.46899559358928133), ('education.num', 0.46899559358928133), ('capital.gain', 0.46899559358928133), ('capital.loss', 0.46899559358928133), ('hours.per.week', 0.46899559358928133)]]
+GENERATION N:  3
+
+
+Individual  0
+Fitness values :
+[-2.3449779679464067, 5]
+[[('age', 0.46899559358928133), ('education.num', 0.46899559358928133), ('capital.gain', 0.46899559358928133), ('capital.loss', 0.46899559358928133), ('hours.per.week', 0.46899559358928133)]]
+
+
+Individual  1
+Fitness values :
+[-2.3449779679464067, 5]
+[[('age', 0.46899559358928133), ('education.num', 0.46899559358928133), ('capital.gain', 0.46899559358928133), ('capital.loss', 0.46899559358928133), ('hours.per.week', 0.46899559358928133)]]
+
+
+Individual  2
+Fitness values :
+[-2.3449779679464067, 5]
+[[('age', 0.46899559358928133), ('education.num', 0.46899559358928133), ('capital.gain', 0.46899559358928133), ('capital.loss', 0.46899559358928133), ('hours.per.week', 0.46899559358928133)]]
+
+
+Individual  3
+Fitness values :
+[0, 8]
+[[]]
+
+
+Individual  4
+Fitness values :
+[0, 8]
+[[]]
+
+
+Individual  5
+Fitness values :
+[0, 8]
+[[]]
+
+
+Individual  6
+Fitness values :
+[0, 8]
+[[]]
+
+
+Individual  7
+Fitness values :
+[0, 8]
+[[]]
+
+
+Individual  8
+Fitness values :
+[0, 8]
+[[]]
+
+
+Individual  9
+Fitness values :
+[0, 8]
+[[]]
+
+
+Individual  10
+Fitness values :
+[0, 8]
+[[]]
+
+
+Individual  11
+Fitness values :
+[-2.3449779679464067, 5]
+[[('age', 0.46899559358928133), ('education.num', 0.46899559358928133), ('capital.gain', 0.46899559358928133), ('capital.loss', 0.46899559358928133), ('hours.per.week', 0.46899559358928133)]]
+
+
+Individual  12
+Fitness values :
+[0, 8]
+[[]]
+
+
+Individual  13
+Fitness values :
+[0, 8]
+[[]]
+
+
+Individual  14
+Fitness values :
+[0, 8]
+[[]]
+
+
+Individual  15
+Fitness values :
+[-2.3449779679464067, 5]
+[[('age', 0.46899559358928133), ('education.num', 0.46899559358928133), ('capital.gain', 0.46899559358928133), ('capital.loss', 0.46899559358928133), ('hours.per.week', 0.46899559358928133)]]
+
+
+Individual  16
+Fitness values :
+[0, 8]
+[[]]
+
+
+Individual  17
+Fitness values :
+[0, 8]
+[[]]
+
+
+Individual  18
+Fitness values :
+[0, 8]
+[[]]
+
+
+Individual  19
+Fitness values :
+[0, 8]
+[[]]
+BEST INDIVIDUAL: 
+[-2.3449779679464067, 5]
+[[('age', 0.46899559358928133), ('education.num', 0.46899559358928133), ('capital.gain', 0.46899559358928133), ('capital.loss', 0.46899559358928133), ('hours.per.week', 0.46899559358928133)]]
+GENERATION N:  4
+
+
+Individual  0
+Fitness values :
+[-2.3449779679464067, 5]
+[[('age', 0.46899559358928133), ('education.num', 0.46899559358928133), ('capital.gain', 0.46899559358928133), ('capital.loss', 0.46899559358928133), ('hours.per.week', 0.46899559358928133)]]
+
+
+Individual  1
+Fitness values :
+[-2.3449779679464067, 5]
+[[('age', 0.46899559358928133), ('education.num', 0.46899559358928133), ('capital.gain', 0.46899559358928133), ('capital.loss', 0.46899559358928133), ('hours.per.week', 0.46899559358928133)]]
+
+
+Individual  2
+Fitness values :
+[-2.3449779679464067, 5]
+[[('age', 0.46899559358928133), ('education.num', 0.46899559358928133), ('capital.gain', 0.46899559358928133), ('capital.loss', 0.46899559358928133), ('hours.per.week', 0.46899559358928133)]]
+
+
+Individual  3
+Fitness values :
+[-2.3449779679464067, 5]
+[[('age', 0.46899559358928133), ('education.num', 0.46899559358928133), ('capital.gain', 0.46899559358928133), ('capital.loss', 0.46899559358928133), ('hours.per.week', 0.46899559358928133)]]
+
+
+Individual  4
+Fitness values :
+[-2.3449779679464067, 5]
+[[('age', 0.46899559358928133), ('education.num', 0.46899559358928133), ('capital.gain', 0.46899559358928133), ('capital.loss', 0.46899559358928133), ('hours.per.week', 0.46899559358928133)]]
+
+
+Individual  5
+Fitness values :
+[0, 8]
+[[]]
+
+
+Individual  6
+Fitness values :
+[0, 8]
+[[]]
+
+
+Individual  7
+Fitness values :
+[0, 8]
+[[]]
+
+
+Individual  8
+Fitness values :
+[0, 8]
+[[]]
+
+
+Individual  9
+Fitness values :
+[0, 8]
+[[]]
+
+
+Individual  10
+Fitness values :
+[-2.3449779679464067, 5]
+[[('age', 0.46899559358928133), ('education.num', 0.46899559358928133), ('capital.gain', 0.46899559358928133), ('capital.loss', 0.46899559358928133), ('hours.per.week', 0.46899559358928133)]]
+
+
+Individual  11
+Fitness values :
+[0, 8]
+[[]]
+
+
+Individual  12
+Fitness values :
+[0, 8]
+[[]]
+
+
+Individual  13
+Fitness values :
+[-2.3449779679464067, 5]
+[[('age', 0.46899559358928133), ('education.num', 0.46899559358928133), ('capital.gain', 0.46899559358928133), ('capital.loss', 0.46899559358928133), ('hours.per.week', 0.46899559358928133)]]
+
+
+Individual  14
+Fitness values :
+[0, 8]
+[[]]
+
+
+Individual  15
+Fitness values :
+[-2.3449779679464067, 5]
+[[('age', 0.46899559358928133), ('education.num', 0.46899559358928133), ('capital.gain', 0.46899559358928133), ('capital.loss', 0.46899559358928133), ('hours.per.week', 0.46899559358928133)]]
+
+
+Individual  16
+Fitness values :
+[0, 8]
+[[]]
+
+
+Individual  17
+Fitness values :
+[-2.3449779679464067, 5]
+[[('age', 0.46899559358928133), ('education.num', 0.46899559358928133), ('capital.gain', 0.46899559358928133), ('capital.loss', 0.46899559358928133), ('hours.per.week', 0.46899559358928133)]]
+
+
+Individual  18
+Fitness values :
+[0, 8]
+[[]]
+
+
+Individual  19
+Fitness values :
+[0, 8]
+[[]]
+BEST INDIVIDUAL: 
+[-2.3449779679464067, 5]
+[[('age', 0.46899559358928133), ('education.num', 0.46899559358928133), ('capital.gain', 0.46899559358928133), ('capital.loss', 0.46899559358928133), ('hours.per.week', 0.46899559358928133)]]
+
+
+GENERATION:  0
+Pareto Front  0
+[[-2.3449779679464067, 5]]
+Pareto Front  1
+[[0, 8], [0, 8], [0, 8], [0, 8], [0, 8], [0, 8], [0, 8], [0, 8], [0, 8], [0, 8], [0, 8], [0, 8], [0, 8], [0, 8], [0, 8], [0, 8], [0, 8], [0, 8], [0, 8]]
+Pareto Front  2
+[]
+
+
+GENERATION:  1
+Pareto Front  0
+[[-2.3449779679464067, 5]]
+Pareto Front  1
+[[0, 8], [0, 8], [0, 8], [0, 8], [0, 8], [0, 8], [0, 8], [0, 8], [0, 8], [0, 8], [0, 8], [0, 8], [0, 8], [0, 8], [0, 8], [0, 8], [0, 8], [0, 8], [0, 8]]
+Pareto Front  2
+[]
+
+
+GENERATION:  2
+Pareto Front  0
+[[-2.3449779679464067, 5], [-2.3449779679464067, 5], [-2.3449779679464067, 5]]
+Pareto Front  1
+[[0, 8], [0, 8], [0, 8], [0, 8], [0, 8], [0, 8], [0, 8], [0, 8], [0, 8], [0, 8], [0, 8], [0, 8], [0, 8], [0, 8], [0, 8], [0, 8], [0, 8]]
+Pareto Front  2
+[]
+
+
+GENERATION:  3
+Pareto Front  0
+[[-2.3449779679464067, 5], [-2.3449779679464067, 5], [-2.3449779679464067, 5], [-2.3449779679464067, 5], [-2.3449779679464067, 5]]
+Pareto Front  1
+[[0, 8], [0, 8], [0, 8], [0, 8], [0, 8], [0, 8], [0, 8], [0, 8], [0, 8], [0, 8], [0, 8], [0, 8], [0, 8], [0, 8], [0, 8]]
+Pareto Front  2
+[]
+
+
+GENERATION:  4
+Pareto Front  0
+[[-2.3449779679464067, 5], [-2.3449779679464067, 5], [-2.3449779679464067, 5], [-2.3449779679464067, 5], [-2.3449779679464067, 5], [-2.3449779679464067, 5], [-2.3449779679464067, 5], [-2.3449779679464067, 5], [-2.3449779679464067, 5]]
+Pareto Front  1
+[[0, 8], [0, 8], [0, 8], [0, 8], [0, 8], [0, 8], [0, 8], [0, 8], [0, 8], [0, 8], [0, 8]]
+Pareto Front  2
+[]
