@@ -24,6 +24,9 @@ from random import (
 ) 
 import numpy as np
 import pandas as pd
+import pickle
+import sys
+from datetime import datetime
 
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -35,7 +38,6 @@ from sklearn.metrics import classification_report
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import accuracy_score
 
-import numpy as np
 from pyitlib import discrete_random_variable as drv
 
 import shap
@@ -46,13 +48,9 @@ import utils
 from problem import Problem
 from utils import NSGA2Utils
 from evolution import Evolution
-import sys
 
-
-
-from datetime import datetime
 now = datetime.now().strftime("%Y%m%d_%H%M%S")
-sys.stdout = open('example/TAILORED_ML_NSGA2/data/output/movingCompany_NSGA2_TAIL_'+now, 'w')
+sys.stdout = open('example/TAILORED_ML_NSGA2/data/output/movingCompany_NSGA2_decisionalLogic_'+now, 'w')
 
 
 n_Ind = 2000
@@ -346,6 +344,8 @@ shap.summary_plot(shap_values,
                   feature_names=var)
 
 
+with open('example/ML_NSGA2/data/variables/generations_'+ now +'.pickle', 'wb') as f:
+    pickle.dump(generations, f)
 
 # print("\nLift Heavy Weight")
 # print(drv.information_mutual(HD, X_validation[:,0], cartesian_product=True))
