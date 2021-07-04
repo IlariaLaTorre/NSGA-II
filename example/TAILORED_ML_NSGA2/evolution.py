@@ -53,6 +53,7 @@ class Evolution:
                 self.utils.calculate_crowding_distance(front)
             children = self.utils.create_children(self.population)
             #
+            returned_population = self.population
             generations.append(copy(returned_population))
         #return returned_population.fronts[0]  #last population fronts[0]
         return generations 

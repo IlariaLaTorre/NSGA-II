@@ -30,13 +30,10 @@ import seaborn as sns
 from collections import Counter
 
 from sklearn.linear_model import LogisticRegression
-from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import GridSearchCV, cross_val_score, StratifiedKFold, learning_curve, train_test_split, KFold
 from sklearn.metrics import classification_report
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import accuracy_score
-from sklearn import metrics
-
 
 import numpy as np
 from pyitlib import discrete_random_variable as drv
@@ -122,7 +119,9 @@ for n in range (n_Ind):
     features = [age_vector,gender_vector,marital_status_vector,education_vector,lift_heavy_weight_vector]
 
 
+
 #Ground Truth Generation Logic (with bias embedded in the generation of the dataset=all individuals with LHW < 20 kg = NO/ all men with LHW >= 20 kg = YES / Penalize Women that lift more thatn 20 kg)
+#Classification Logic
 gender = 1
 heavy_weight = 4
 for n in range (n_Ind):
@@ -190,33 +189,16 @@ cv_results = cross_val_score(LogisticRegression(), X_train, Y_train, cv=kfold, s
 msg = "%s: %f (%f)" % ("LR", cv_results.mean(), cv_results.std())
 print(msg)
 
-#model = "logisticRegression"
-model = "randomForest"
+# Finalize Model
+logistic_regression = LogisticRegression()
+logistic_regression.fit(X_train, Y_train)
+predictions = logistic_regression.predict(X_validation)
+#print("Accuracy: %s%%" % (100*accuracy_score(Y_validation, predictions)))
+print(confusion_matrix(Y_validation, predictions))
+print(classification_report(Y_validation, predictions))
+#['Age','Gender','Marital_Status','Education','Lift_Heavy_Weight']
+#print(logistic_regression.predict([[25,1,0,2,40]])[0])
 
-if (model == "logisticRegression"):
-    # Finalize Model
-    # Logistic Regression
-    logistic_regression = LogisticRegression()
-    logistic_regression.fit(X_train, Y_train)
-    predictions = logistic_regression.predict(X_validation)
-    #print("Accuracy: %s%%" % (100*accuracy_score(Y_validation, predictions)))
-    print(confusion_matrix(Y_validation, predictions))
-    print(classification_report(Y_validation, predictions))
-    #['Age','Gender','Marital_Status','Education','Lift_Heavy_Weight']
-    #print(logistic_regression.predict([[25,1,0,2,40]])[0])
-
-if (model == "randomForest"):
-    # Random Forest
-    random_forest=RandomForestClassifier(n_estimators=100)
-    #Train the model using the training sets y_pred=clf.predict(X_test)
-    random_forest.fit(X_train,Y_train)
-
-    Y_pred=random_forest.predict(X_validation)
-
-    # Model Accuracy, how often is the classifier correct?
-    print("Accuracy:", metrics.accuracy_score(Y_validation, Y_pred))
-
-    print(random_forest.predict([[25,1,0,2,40]]))
 
 #MUTUAL INFO DATASET VARIABLES
 print("DATASET - Mutual Info")
@@ -224,6 +206,22 @@ for i in range(len(dataSet.values[0])-1):
     mi = drv.information_mutual(dataSet.values[:,i],dataSet.values[:,-1],cartesian_product=True)
     print(var[i])
     print(mi)
+
+#classification logic
+def decide(applicant):
+    gender = 1
+    heavy_weight = 4
+    if  applicant[heavy_weight] >= 30:
+        if applicant[gender] == 1:
+            r = random.randrange(0, 1)
+            if r > 0:
+                return 1
+            else:
+                return 0
+        else:
+            return 1
+    else:
+        return 0
 
 #FITNESS FUNCTIONS
 
@@ -235,8 +233,7 @@ pop_size = 10
 num_generations = 10
 
 
-#c = logistic_regression
-c = random_forest
+c = logistic_regression
 
 def f(chromosome):
 
@@ -244,7 +241,7 @@ def f(chromosome):
     #predict
     #len(chromosome) = 30 (observations)
     for i in range(length_gene):
-        y.append(c.predict([chromosome[i]])[0])
+        y.append(decide(chromosome[i]))
         
     #compute mutual array using y
     M=[]
