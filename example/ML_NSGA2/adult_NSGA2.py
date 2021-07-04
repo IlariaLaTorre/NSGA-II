@@ -123,7 +123,7 @@ func = [i.objectives for i in generations[-1].fronts[0]] #N of fronts[0] after a
 
 
 
-with open('generations.pickle', 'wb') as f:
+with open('example/ML_NSGA2/data/variables/generations_'+ now +'.pickle', 'wb') as f:
     pickle.dump(generations, f)
 
 g = 0
